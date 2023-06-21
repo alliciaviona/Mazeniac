@@ -6,16 +6,31 @@
 //
 
 import SwiftUI
+import SpriteKit
+
+enum Directions {
+    case up
+    case down
+    case left
+    case right
+    case none
+}
 
 struct ContentView: View {
+    
+    @State var moveTo: Directions = .none
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Spacer()
+                .frame(height: 0)
+            SpriteView(scene: GameScene($moveTo))
+                .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.width)
+            Spacer()
+                .frame(height: 0)
+            GamePad(moveTo: $moveTo)
         }
-        .padding()
+        
     }
 }
 
